@@ -9,7 +9,10 @@ pipeline {
         stage('Checkout') { 
             steps {
                 echo 'Checkout'
-                sh './jenkins/scripts/build.sh'
+                sh '''
+                    chmod +x ./jenkins/scripts/build.sh
+                    ./jenkins/scripts/build.sh
+                    '''
             }
         }
 
