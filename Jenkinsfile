@@ -6,6 +6,13 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') { 
+            steps {
+                echo 'Checkout'
+                sh './jenkins/scripts/build.sh'
+            }
+        }
+
         stage('Build') { 
             steps {
                 echo 'Build'
