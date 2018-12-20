@@ -6,16 +6,6 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout') { 
-            steps {
-                echo 'Checkout'
-                sh '''
-                    chmod +x ./jenkins/scripts/build.sh
-                    ./jenkins/scripts/build.sh
-                    '''
-            }
-        }
-
         stage('Build') { 
             steps {
                 echo 'Build'
