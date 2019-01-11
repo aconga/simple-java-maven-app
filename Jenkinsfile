@@ -1,14 +1,20 @@
-pipeline {
-    agent any
-    docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+pipeline { 
+    agent any 
     stages {
         stage('Build') { 
+            steps { 
+                sh 'make' 
+            }
+        }
+        stage('Test'){
             steps {
-                echo 'Build'
-                sh 'mvn -B -DskipTests clean package'
+                sh 'make check'
+                junit 'reports/**/*.xml' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'make publish'
             }
         }
     }
